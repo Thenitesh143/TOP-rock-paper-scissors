@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        #game {
+            display: flex;
+        }
+
+        div {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div id="game">
+        <div class="computer-sec">
+            <div id="computer">Computer Choice</div>
+            <h2 id="computer-choice"></h2>
+        </div>
+        <div class="human">
+            <button onclick="rock()" id="rock">ROCK</button>
+            <button onclick="paper()" id="paper">PAPER</button>
+            <button onclick="scissor()" id="scissor">SCISSOR</button>
+            <h2 id="human-choice"></h2>
+        </div>
+    </div>
+
+    <h2 id="win"></h2>
+
+    <script>
+
+        function rock() {
+            document.getElementById('human-choice').innerHTML = 'ROCK';
+            let x = computerChoice()
+            let y = 'rock'
+            winner(x, y);
+        }
+        function paper() {
+            document.getElementById('human-choice').innerHTML = 'PAPER';
+            let x = computerChoice()
+            let y = 'paper'
+            winner(x, y);
+        }
+        function scissor() {
+            document.getElementById('human-choice').innerHTML = 'SCISSOR';
+            let x = computerChoice()
+            let y = 'scissor'
+            winner(x, y);
+        }
+
+        //computer choice function
+        function computerChoice() {
+            const options = ['rock', 'paper', 'scissor'];
+            let opt = options[Math.floor((Math.random() * 10) % 3)];
+            document.getElementById('computer-choice').innerHTML = opt.toUpperCase();
+            return opt;
+        }
+
+
+        //Winner function 
+        function winner(x, y) {
+            if ((x === 'rock' && y === 'rock') || (x === 'paper' && y === 'paper') || (x === 'scissor' && y === 'scissor')) {
+                document.getElementById('win').innerHTML = 'TIE - Nobody is the winner';
+            } else if ((x === 'rock' && y === 'paper') || (x === 'paper' && y === 'scissor') || (x === 'scissor' && y === 'rock')) {
+                document.getElementById('win').innerHTML = 'YOU ARE THE WINNER';
+            } else {
+                document.getElementById('win').innerHTML = 'YOU LOSE THE GAME';
+            }
+        }
+    </script>
+</body>
+
+</html>
